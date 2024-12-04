@@ -1,36 +1,6 @@
 const mongoose = require('mongoose');
 const Category = require('../model/category');
 
-// async function addCategory(model){
-//     let category=new Category({
-//         name:model.name,
-//     });
-//     category.save();
-//     return category.toObject();
-
-// }
-// async function getCategory(model){
-//  let categories= await Category.find();
-//  return categories.map(c=>c.toObject());
-// }
-// async function getCategoryById(id){
-//     let category= await Category.findById(id);
-//     return category.toObject();
-//    }
-// async function updateCategory(id,model){
-//    await Category.findOneAndUpdate({ _id:id},model)
-//     return;
-
-// }
-// async function deleteCategory(id){
-//     await Category.findByIdAndDelete(id)
-//      return;
- 
-//  }
-// module.exports ={addCategory, updateCategory,deleteCategory,getCategory,getCategoryById};
-
-
-
 // Helper function to validate ObjectId
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 

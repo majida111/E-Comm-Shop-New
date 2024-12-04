@@ -9,13 +9,13 @@ async function addBrand(model){
     let brand=new Brand({
         name:model.name,
     });
-    brand.save();
+    await brand.save();
     return brand.toObject();
 
 }
-async function getBrand(model){
+async function getBrand(){
  let brands= await Brand.find();
- return brands.map(x=>x.toObject());
+ return brands.map((x)=>x.toObject());
 }
 // Example: Validate `id` in getCategoryById
 async function getBrandById(id) {
@@ -36,7 +36,7 @@ async function updateBrand(id, model) {
         throw new Error('Invalid ObjectId');
     }
 
-    const updatedBrand = await Brand.findOneAndUpdate({ _id: id }, model, {
+    const updatedBrand = await Brand.findByIdAndUpdate({ _id: id }, model, {
         new: true, // Return updated document
     });
 

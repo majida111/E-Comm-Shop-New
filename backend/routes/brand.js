@@ -1,6 +1,12 @@
 const express = require('express');
 const router=express.Router();
-const productController = require('../controller/brandController');
+const {addBrand,
+  getBrand,
+  getBrandById,
+  updateBrand,
+  deleteBrand
+} = require('../controller/brandController')
+
 // Middleware to clean "add" prefix
 
 router.param('id', (req, res, next, id) => {
@@ -12,20 +18,20 @@ router.param('id', (req, res, next, id) => {
 
   //Routes
 
-  router.post('',async(req, res) => {
+  router.post("",async(req, res) => {
     const model=req.body;
-    const result=await productController.addBrand(model);
+    const result=await addBrand(model);
     res.send(result);
   });
   router.get("", async (req, res) => {
-    const result = await productController.getBrand();
+    const result = await getBrand();
     res.send(result);
   });
 
   router.get("/:id", async (req, res) => {
     try {
       const id = req.params.id;
-      const brand = await productController.getBrandById(id);
+      const brand = await getBrandById(id);
       res.status(200).json(brand);
     } catch (error) {
       res.status(error.message === "Invalid ObjectId" ? 400 : 404).json({ error: error.message });
@@ -34,12 +40,12 @@ router.param('id', (req, res, next, id) => {
   router.put("/:id", async (req, res) => {
     const model = req.body;
     const id = req.params.id;
-    await productController.updateBrand(id, model);
+    await updateBrand(id, model);
     res.send({ message: "Updated" });
   });
   router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    await productController.deleteBrand(id);
+    await deleteBrand(id);
     res.send({ message: "Deleted" });
   });
   
