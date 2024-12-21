@@ -6,6 +6,8 @@ import { BrandComponent } from './components/manage/brand/brand.component';
 import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
 import { ProductComponent } from './components/manage/product/product.component';
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 export const routes: Routes = [
     {
@@ -38,4 +40,10 @@ export const routes: Routes = [
     {
         path:"admin/products/:id",component:ProductFormComponent
     },
+    {
+        path:"products",component:ProductListComponent
+    },
+    {
+        path:"product/:id",component:ProductDetailComponent
+    }
 ];

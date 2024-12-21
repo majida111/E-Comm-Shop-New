@@ -1,0 +1,20 @@
+<header class="ecommerce-header">
+  <div class="top-bar">
+    <div class="logo" routerLink="/">E-Shop</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search products..." (keyup.enter)="onSearch($event)"/>
+      <!-- <button>Search</button> -->
+    </div>
+    <div class="profile-link">
+      <a href="/profile">Profile</a>
+    </div>
+  </div>
+  <nav class="category-menu">
+    <ul>
+        @for (category of categoryList; track $index) {
+            <li (click)="searchCategory(category._id!)"><a>{{category.name}}</a></li>
+        }
+    </ul>
+    
+  </nav>
+</header>

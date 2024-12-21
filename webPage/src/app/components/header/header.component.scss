@@ -1,0 +1,82 @@
+.ecommerce-header {
+    background-color: rgb(48, 143, 184);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 0px solid #ddd;
+  
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+      }
+  
+      .search-bar {
+        display: flex;
+        align-items: center;
+        input {
+          padding: 5px 10px;
+          font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          margin-right: 5px;
+          &:focus {
+            outline: none;
+            border-color: #1b69b7;
+          }
+        }
+        button {
+          padding: 5px 10px;
+          font-size: 1rem;
+          color: #fff;
+          background-color: #007bff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          &:hover {
+            background-color: #155dab;
+          }
+        }
+      }
+  
+      .profile-link {
+        a {
+          font-size: 1rem;
+          color: #ced1d5;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  
+    .category-menu {
+      ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 10px 0;
+        margin: 0;
+        background-color: rgb(48, 143, 184);
+  
+        li {
+          margin: 0 15px;
+  
+          a {
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            &:hover {
+              color: #c3c4c6;
+            }
+          }
+        }
+      }
+    }
+  }
+  
