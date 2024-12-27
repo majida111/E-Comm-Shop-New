@@ -28,4 +28,8 @@ export class CustomerService {
     return this.http.get<Product[]>(environment.apiUrl+`/customer/products?searchTerm=${searchTerm}&categoryId=${categoryId}&
       sortBy=${sortBy}&sortOrder=${sortOrder}&brandId=${brandId}&page=${page}&pageSize=${pageSize}`)
   }
+
+  getProductById(id:string){
+return this.http.get<Product>(environment.apiUrl+"/customer/product/"+id);
+  }
 }

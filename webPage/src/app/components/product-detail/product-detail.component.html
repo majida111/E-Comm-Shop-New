@@ -1,1 +1,76 @@
-<p>product-detail works!</p>
+<body class="bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Product Gallery and Details Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Product Gallery -->
+        <div class="space-y-4">
+          <div class="relative w-full h-96">
+                <img  class="w-full h-full object-cover rounded-lg border border-gray-300" [src]="mainImage" alt="Product Image">
+          </div>
+          <div class="grid grid-cols-4 gap-4">
+            @for(url of product.images; track $index) {
+            <img (click)="changeImage(url)" class="w-full h-24 object-cover rounded-lg border border-gray-300 cursor-pointer hover:opacity-75" [src]="url" alt="Thumbnail">
+            <img class="w-full h-24 object-cover rounded-lg border border-gray-300 cursor-pointer hover:opacity-75" [src]="url" alt="Thumbnail">
+            <img class="w-full h-24 object-cover rounded-lg border border-gray-300 cursor-pointer hover:opacity-75" [src]="url" alt="Thumbnail">
+            <img class="w-full h-24 object-cover rounded-lg border border-gray-300 cursor-pointer hover:opacity-75" [src]="url" alt="Thumbnail">
+            }
+          </div>
+        </div>
+  
+        <!-- Product Details -->
+        <div>
+          <h1 class="text-xl font-bold text-gray-800">{{product.name}}</h1>
+          <div>
+            <p class="mt-2 text-gray-400"><s><b>{{product.price}}₹</b></s></p>
+            <p class="mt-2 text-orange-400"><b>{{product.discount}}% OFF</b></p>
+            <p class="mt-2 text-green-600"><b>{{sellingPrice}}₹</b></p>
+          </div>
+          
+          <p class="mt-4 text-gray-700">{{product.shortDescription}}</p>
+          <button class="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500">Add to Cart</button>
+        </div>
+      </div>
+  
+      <!-- Product Detail and Reviews Section -->
+      <div class="mt-12 bg-white p-6 rounded-lg shadow-md">
+        <div class="border-b border-gray-300 pb-4">
+          <h2 class="text-xl font-semibold text-gray-800">Product Details</h2>
+          <pre>{{product.description}}</pre>
+        </div>
+          
+        @if(similarProducts.length){
+        <div class="my-4">
+            <h4 class="text-2xl font-bold">Similar Products</h4>
+            <div class="flex justify-between gap-2">
+                @for (product of similarProducts; track $index) {
+                    <div class="w-3/12 shadow">
+                        <!-- <h4>{{product.name}}</h4> -->
+                        <app-product-card [product]="product"></app-product-card>
+                    </div>
+                }
+               
+            </div>
+        </div>
+    }
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold text-gray-800">Customer Reviews</h2>
+          <div class="mt-4 space-y-4">
+            <div class="border-t border-gray-300 pt-4">
+              <p class="text-sm text-gray-600">John Doe - <span class="font-semibold">5/5</span></p>
+              <p class="mt-2 text-gray-700">Great product, very satisfied with the quality!</p>
+            </div>
+            <div class="border-t border-gray-300 pt-4">
+              <p class="text-sm text-gray-600">Jane Smith - <span class="font-semibold">4/5</span></p>
+              <p class="mt-2 text-gray-700">Good value for money. Would recommend to others.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      function changeImage(src) {
+        document.getElementById('mainImage').src = src;
+      }
+    </script>
+  </body>
