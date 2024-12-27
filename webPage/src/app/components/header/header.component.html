@@ -2,7 +2,7 @@
   <div class="top-bar">
     <div class="logo" routerLink="/">E-Shop</div>
     <div class="search-bar">
-      <input type="text" placeholder="Search products..." (keyup.enter)="onSearch($event)"/>
+      <input type="text" placeholder="Search products..." [(ngModel)]="searchTerm" (keyup.enter)="onSearch($event)"/>
       <!-- <button>Search</button> -->
     </div>
     <div class="profile-link">
