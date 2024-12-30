@@ -14,6 +14,7 @@ import { authGuard } from './core/auth-guard';
 import { AdminDashboardComponent } from './components/manage/admin-dashboard/admin-dashboard.component';
 import { adminGuard } from './core/admin-guard';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { WishlistsComponent } from './components/wishlists/wishlists.component';
 
 export const routes: Routes = [
     {
@@ -57,6 +58,9 @@ export const routes: Routes = [
     },
     {
         path:"profile",component:CustomerProfileComponent,canActivate:[authGuard]
+    },
+    {
+        path:"wishlists",component:WishlistsComponent,canActivate:[authGuard]
     },
     {
         path:'register',component:RegisterComponent

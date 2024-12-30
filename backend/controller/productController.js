@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Product=require('./../model/product');
 
 
+
+// Helper function to validate ObjectId
+const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
+
 async function addProduct(model){
     let product=new Product({
         ...model

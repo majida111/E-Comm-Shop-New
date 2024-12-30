@@ -5,7 +5,7 @@
       <input type="text" placeholder="Search products..." [(ngModel)]="searchTerm" (keyup.enter)="onSearch($event)"/>
       <!-- <button>Search</button> -->
     </div>
-    <div class="profile-link">
+    <div class="profile-link flex gap-2 items-center">
       @if(authService.isAdmin){
         <a routerLink="/admin">{{authService.userName}}</a>
       }@else {
@@ -13,6 +13,7 @@
       }
      
       @if(authService.isLoggedIn){
+        <a routerLink="/wishlists"> <mat-icon class="text-red-500">favorite</mat-icon></a>
         <a (click)="logout()" class="cursor-pointer ml-2">Logout</a>
       }@else{
         <a routerLink="/login" class="cursor-pointer ml-2">LogIn</a>

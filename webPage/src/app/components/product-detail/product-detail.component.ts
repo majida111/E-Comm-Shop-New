@@ -3,11 +3,12 @@ import { CustomerService } from '../../services/customer.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../types/product';
 import { ProductCardComponent } from '../product-card/product-card.component';
-
+import { WishlistService } from '../../services/wishlist.service';
+import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [ProductCardComponent],
+  imports: [ProductCardComponent,MatIconModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
@@ -42,4 +43,29 @@ changeImage(url:string){
 get sellingPrice(){
   return Math.round(this.product.price-(this.product.price*this.product.discount)/100);
 }
+wishlistService=inject(WishlistService);
+addToWishList(product:Product){
+  console.log("Hello product",product);
+  if(this.isInWishList(product)){
+    this.wishlistService.removeFromWishlists(product._id!).subscribe((result)=>{
+      this.wishlistService.init();
+    });
+  }else{
+    this.wishlistService.addInWishlist(product._id!).subscribe((result)=>{
+      this.wishlistService.init();
+  
+    })
+  }
+  }
+  
+   isInWishList(product:Product){
+   let isExists= this.wishlistService.wishlists.find((x)=>x._id==product._id);
+   if(isExists)
+    return true;
+   else
+    return false;
+   
+  }
+  
+
 }
