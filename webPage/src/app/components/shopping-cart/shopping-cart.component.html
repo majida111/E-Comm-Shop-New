@@ -1,0 +1,38 @@
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold text-center mb-8">Shopping Cart</h1>
+
+    <!-- Shopping Cart Items -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        @for (item of cartItems; track $index) {
+      <div class="flex items-center border-b pb-4 mb-4">
+        <img [src]="item.product.images[0]" alt="Product" class="w-20 h-20 rounded-lg object-cover">
+        <div class="ml-4 flex-grow">
+          <h4 class="font-semibold text-lg">{{item.product.name}}</h4>
+          <div class="flex items-baseline">
+            <p class="mt-2 text-gray-400"><s><b>{{item.product.price}}₹</b></s></p>
+            <p class="mt-2 text-orange-400"><b>{{item.product.discount}}% OFF</b></p>
+            <p class="mt-2 text-green-600"><b>{{sellingPrice(item.product)}}₹</b></p>
+        </div>
+            <div class="text-right px-4">
+                <p class="text-lg font-semibold">Subtotal: <span class="text-gray-700">₹{{sellingPrice(item.product)*item.quantity}}</span></p>  
+            </div>    
+        </div>
+        <div class="flex items-center space-x-2">
+          <button (click)="addToCart(item.product._id!,-1)" class="bg-gray-200 px-2 py-1 rounded">-</button>
+          <span>{{item.quantity}}</span>
+          <button (click)="addToCart(item.product._id!,1)" class="bg-gray-200 px-2 py-1 rounded">+</button>
+        </div>
+        <button class="text-red-500 ml-4">Remove</button>
+      </div>  
+    }  
+      <!-- Checkout Section --> 
+    <div class="text-right">
+        <h2 class="text-xl font-bold mb-4">Cart Summary</h2>
+        <div class="mb-4 text-right">
+            <span class="text-lg">Total: </span>
+            <span class="text-lg font-bold">₹{{totalAmount}}</span>
+        </div>
+      <button class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600">Proceed to Checkout</button>
+    </div>
+    </div>
+  </div>

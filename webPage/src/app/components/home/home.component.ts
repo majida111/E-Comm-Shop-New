@@ -7,6 +7,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { WishlistService } from '../../services/wishlist.service';
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -31,6 +32,7 @@ newProducts:Product[] = [];
 featuredProducts:Product[]=[];
 bannerImages:Product[] = [];
 wishListService=inject(WishlistService);
+cartService=inject(CartService);
 ngOnInit(){
   this.customerService.getFeaturedProducts().subscribe(result=>{
     this.featuredProducts = result;
@@ -44,5 +46,6 @@ ngOnInit(){
     this.bannerImages.push(...result);
   });
   this.wishListService.init();
+  this.cartService.init();
 }
 }
