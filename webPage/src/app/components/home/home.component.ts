@@ -45,7 +45,6 @@ ngOnInit(){
     console.log(this.newProducts);
     this.bannerImages.push(...result);
   });
-  this.wishListService.init();
-  this.cartService.init();
+  
 }
 }

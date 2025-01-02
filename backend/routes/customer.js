@@ -6,8 +6,8 @@ const {
 const { getCategory } = require('../controller/categoryController');
 const {getBrand } = require('../controller/brandController');
 const {getWishlist, removeFromWishlist, addToWishlist}=require("../controller/wishlistController");
-const {getCartItems ,removeFromCart,addToCart}=require("../controller/shoppingcartController");
-
+const {getCartItems ,removeFromCart,addToCart,clearCart}=require("../controller/shoppingcartController");
+const { addOrder, getCustomerOrders }=require("./../controller/orderController");
 router.get("/newProducts",async (req, res)=>{
   const newProducts=await getNewProducts();
   res.send(newProducts);
@@ -90,4 +90,19 @@ router.delete("/carts/:id",async(req, res)=>{
   
 });
 
+router.post("/order",async(req, res)=>{
+  const userId=req.user.id;
+  const order=req.body;
+  await addOrder(userId,order);
+  await clearCart(userId);
+  return res.send({
+    message:'Order Created successfully'
+  })
+});
+
+router.get("/orders",async(req, res)=>{
+ const userId=req.user.id;
+ const orders=await getCustomerOrders(userId);
+ return res.send(orders);
+});
 module.exports=router;
